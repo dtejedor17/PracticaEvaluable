@@ -15,15 +15,15 @@ public class PracticaEvaluable {
                 System.out.printf("\nEl Jugador " + jugadorHumano + " intenta adivinar si el Jugador " + jugadorMaquina + " tiene un número par o impar \n");
                 System.out.println();
                 System.out.println("************************* TURNO JUGADOR "+jugadorMaquina+ " **************************");
-                System.out.print("Jugador "+jugadorHumano+", ¿Cuántas canicas quieres apostar?:");
-                try {
-                    do {
+                do {
+                    System.out.print("Jugador " + jugadorHumano + ", ¿Cuántas canicas quieres apostar?:");
+                    try {
                         apuestaHumano = sc.nextInt();
-                    }while (apuestaHumano > canicasHumano);
-                }catch (InputMismatchException e){
-                    System.err.println("Tienes que introducir un numero entre 1 y "+canicasHumano);
-                    apuestaHumano = sc.nextInt();
-                }
+                    }catch (InputMismatchException e){
+                        System.err.printf("\nERRROR: Has de elegir un número entre 1 y "+canicasHumano+"\n");
+                        sc.nextLine();
+                    }
+                }while (apuestaHumano > canicasHumano || apuestaHumano <= 0);
                 apuestaMaquina = (int)(Math.random()*canicasMaquina)+1;
                 parOimparMaquina = rand.nextBoolean();
                 if (parOimparMaquina) {
@@ -55,17 +55,21 @@ public class PracticaEvaluable {
             }else{
                 System.out.printf("El Jugador " + jugadorMaquina + " intenta adivinar si el Jugador " + jugadorHumano + " tiene un número par o impar \n\n");
                 System.out.println("************************* TURNO JUGADOR "+jugadorHumano+ " **************************");
-                System.out.print("Jugador "+jugadorHumano+", ¿Cuántas canicas quieres apostar?: ");
-                try {
-                    apuestaHumano = sc.nextInt();
-                }catch (InputMismatchException e){
-                    System.err.println("Tienes que introducir un numero entre 1 y "+canicasHumano);
-                    apuestaHumano = sc.nextInt();
-                }
-                System.out.printf("\nJugador "+jugadorHumano+" ¿Que crees que tiene el Jugador 2? (Par / Impar):");
-                parOimparHumano = sc.next();
-                parOimparHumano = parOimparHumano.toLowerCase();
-                apuestaMaquina = (int)(Math.random()*canicasMaquina)+1;
+                do {
+                    System.out.print("Jugador " + jugadorHumano + ", ¿Cuántas canicas quieres apostar?:");
+                    try {
+                        apuestaHumano = sc.nextInt();
+                    }catch (InputMismatchException e){
+                        System.err.print("\nERRROR: Has de elegir un número entre 1 y "+canicasHumano+"\n");
+                        sc.nextLine();
+                    }
+                }while (apuestaHumano > canicasHumano || apuestaHumano <= 0);
+                do{
+                    System.out.printf("\nJugador "+jugadorHumano+" ¿Que crees que tiene el Jugador 2? (Par / Impar):");
+                    parOimparHumano = sc.next();
+                    parOimparHumano = parOimparHumano.toLowerCase();
+                }while (!parOimparHumano.equals("par") && !parOimparHumano.equals("impar") );
+            apuestaMaquina = (int)(Math.random()*canicasMaquina)+1;
                 System.out.println();
                 if (parOimparHumano.equals("par") && apuestaMaquina % 2 == 0 || parOimparHumano.equals("impar") && apuestaMaquina % 2 == 1) {
                     ganadorJugadorHumano = true;
