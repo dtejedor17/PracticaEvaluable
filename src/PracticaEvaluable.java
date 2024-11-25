@@ -75,7 +75,7 @@ public class PracticaEvaluable {
                     System.out.println("Jugador "+jugadorHumano+ " tiene "+canicasHumano+" canicas.");
                     System.out.println("Jugador "+jugadorMaquina+ " tiene "+canicasMaquina+" canicas.");
                 }
-                // Como el turno empezó en 0, ahora cambiamos el turno para que juegue el otro jugador.
+                // Como el turno era 0, ahora cambiamos el turno para que juegue el otro jugador.
                 turno = 1;
             }else{
 
@@ -133,6 +133,7 @@ public class PracticaEvaluable {
                     System.out.println("Jugador "+jugadorHumano+ " tiene "+canicasHumano+" canicas.");
                     System.out.println("Jugador "+jugadorMaquina+ " tiene "+canicasMaquina+" canicas.");
                 }
+                // Como el turno era en 1, ahora cambiamos el turno para que juegue el otro jugador.
                 turno = 0;
             }
         }
