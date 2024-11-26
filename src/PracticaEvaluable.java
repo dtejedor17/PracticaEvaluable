@@ -27,17 +27,18 @@ public class PracticaEvaluable {
                 // El jugador humano tiene que apostar un número de canicas entre 1 y el máximo de las que tenga, si hace otra cosa volverá a pedirlo
                 // Si introduce algo que no sea un número entero saltará un error y se lo volverá a pedir
                 do {
-                    System.out.print("Jugador " + jugadorHumano + ", ¿Cuántas canicas quieres apostar?:");
+                    System.out.println("Jugador " + jugadorHumano + ", ¿Cuántas canicas quieres apostar?");
+                    System.out.print("Tiene que ser un número entre 1 y "+Math.min(canicasHumano,canicasMaquina)+": ");
                     try {
                         apuestaHumano = sc.nextInt();
                     }catch (InputMismatchException e){
-                        System.err.printf("\nERRROR: Has de elegir un número entre 1 y "+canicasHumano+"\n");
+                        System.err.printf("\nERRROR\n");
                         sc.nextLine();
                     }
-                }while (apuestaHumano > canicasHumano || apuestaHumano <= 0);
+                }while (apuestaHumano > canicasHumano || apuestaHumano <= 0 && apuestaHumano <= canicasMaquina);
 
-                //La maquina también hace su apuesta, siendo el mínimo 1 y el máximo las canicas que tiene, pudiendo ser todas
-                apuestaMaquina = (int)(Math.random()*canicasMaquina)+1;
+                //La maquina también hace su apuesta, siendo el mínimo 1 y el máximo de las canicas del jugador que menos tiene
+                apuestaMaquina = (int)(Math.random()*Math.min(canicasHumano,canicasMaquina)+1);
 
                 // Con este random boolean la máquina elige si "true == par" o "false == impar"
                 parOimparMaquina = rand.nextBoolean();
@@ -75,6 +76,7 @@ public class PracticaEvaluable {
                     System.out.println("Jugador "+jugadorHumano+ " tiene "+canicasHumano+" canicas.");
                     System.out.println("Jugador "+jugadorMaquina+ " tiene "+canicasMaquina+" canicas.");
                 }
+                System.out.println("*************************FINAL TURNO JUGADOR "+jugadorMaquina+ " **************************");
                 // Como el turno era 0, ahora cambiamos el turno para que juegue el otro jugador.
                 turno = 1;
             }else{
@@ -86,14 +88,15 @@ public class PracticaEvaluable {
                 // mientras que el jugador humano introduzca otra cosa que no sea un número entero,
                 // saldrá un mensaje de error y tendrá que seguir introduciendo datos hasta que el número coindida con lo solicitado
                 do {
-                    System.out.print("Jugador " + jugadorHumano + ", ¿Cuántas canicas quieres apostar?:");
+                    System.out.println("Jugador " + jugadorHumano + ", ¿Cuántas canicas quieres apostar?");
+                    System.out.print("Tiene que ser un número entre 1 y "+Math.min(canicasHumano,canicasMaquina)+": ");
                     try {
                         apuestaHumano = sc.nextInt();
                     }catch (InputMismatchException e){
-                        System.err.print("\nERRROR: Has de elegir un número entre 1 y "+canicasHumano+"\n");
+                        System.err.print("\nERRROR\n");
                         sc.nextLine();
                     }
-                }while (apuestaHumano > canicasHumano || apuestaHumano <= 0);
+                }while (apuestaHumano > canicasHumano || apuestaHumano <= 0 && apuestaHumano <= canicasMaquina);
 
                 // ahora el jugador humano tiene que adivinar si la máquina tiene número par o impar de canicas
                 // si jugador humano introduce cualquier cosa que no sea par o impar (Da igual que contenga mayúsculas) se lo volverá a solicitar
@@ -104,7 +107,7 @@ public class PracticaEvaluable {
                 }while (!parOimparHumano.equals("par") && !parOimparHumano.equals("impar") );
 
                 //ahora la maquina hace su propia apuesta y al igual que en el turno anterior solo podrá elegir entre 1 y su máximo de canicas
-            apuestaMaquina = (int)(Math.random()*canicasMaquina)+1;
+            apuestaMaquina = (int)(Math.random()*Math.min(canicasHumano,canicasMaquina)+1);
                 System.out.println();
 
                 // ahora que hemos salido del bucle porque se ha introducido par o impar, es hora de comparar con la elección de la máquina.
@@ -133,6 +136,7 @@ public class PracticaEvaluable {
                     System.out.println("Jugador "+jugadorHumano+ " tiene "+canicasHumano+" canicas.");
                     System.out.println("Jugador "+jugadorMaquina+ " tiene "+canicasMaquina+" canicas.");
                 }
+                System.out.println("************************* FINAL TURNO JUGADOR "+jugadorHumano+ " **************************");
                 // Como el turno era en 1, ahora cambiamos el turno para que juegue el otro jugador.
                 turno = 0;
             }
