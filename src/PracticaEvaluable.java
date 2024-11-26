@@ -148,6 +148,5 @@ public class PracticaEvaluable {
         }else {
             System.out.printf("\nLo lamento. ¡Has perdido!\n");
         }
-
     }
 }
