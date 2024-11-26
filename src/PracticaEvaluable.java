@@ -32,7 +32,7 @@ public class PracticaEvaluable {
                     try {
                         apuestaHumano = sc.nextInt();
                     }catch (InputMismatchException e){
-                        System.err.printf("\nERRROR\n");
+                        System.err.printf("\nERROR\n");
                         sc.nextLine();
                     }
                 }while (apuestaHumano > canicasHumano || apuestaHumano <= 0 && apuestaHumano <= canicasMaquina);
@@ -76,27 +76,27 @@ public class PracticaEvaluable {
                     System.out.println("Jugador "+jugadorHumano+ " tiene "+canicasHumano+" canicas.");
                     System.out.println("Jugador "+jugadorMaquina+ " tiene "+canicasMaquina+" canicas.");
                 }
-                System.out.println("*************************FINAL TURNO JUGADOR "+jugadorMaquina+ " **************************");
+                System.out.println("*********************** FINAL TURNO JUGADOR "+jugadorMaquina+ " **************************");
                 // Como el turno era 0, ahora cambiamos el turno para que juegue el otro jugador.
                 turno = 1;
             }else{
 
                 // Ahora es tueno del otro jugador, el humano
                 System.out.printf("El Jugador " + jugadorMaquina + " intenta adivinar si el Jugador " + jugadorHumano + " tiene un número par o impar \n\n");
-                System.out.println("************************* TURNO JUGADOR "+jugadorHumano+ " **************************");
+                System.out.println("************************* TURNO JUGADOR "+jugadorHumano+ " ************************");
 
                 // mientras que el jugador humano introduzca otra cosa que no sea un número entero,
                 // saldrá un mensaje de error y tendrá que seguir introduciendo datos hasta que el número coindida con lo solicitado
-                do {
+                while (apuestaHumano > canicasHumano || apuestaHumano <= 0 && apuestaHumano <= canicasMaquina){
                     System.out.println("Jugador " + jugadorHumano + ", ¿Cuántas canicas quieres apostar?");
                     System.out.print("Tiene que ser un número entre 1 y "+Math.min(canicasHumano,canicasMaquina)+": ");
                     try {
                         apuestaHumano = sc.nextInt();
                     }catch (InputMismatchException e){
-                        System.err.print("\nERRROR\n");
+                        System.err.printf("\nERROR\n");
                         sc.nextLine();
                     }
-                }while (apuestaHumano > canicasHumano || apuestaHumano <= 0 && apuestaHumano <= canicasMaquina);
+                }
 
                 // ahora el jugador humano tiene que adivinar si la máquina tiene número par o impar de canicas
                 // si jugador humano introduce cualquier cosa que no sea par o impar (Da igual que contenga mayúsculas) se lo volverá a solicitar
@@ -106,7 +106,7 @@ public class PracticaEvaluable {
                     parOimparHumano = parOimparHumano.toLowerCase();
                 }while (!parOimparHumano.equals("par") && !parOimparHumano.equals("impar") );
 
-                //ahora la maquina hace su propia apuesta y al igual que en el turno anterior solo podrá elegir entre 1 y su máximo de canicas
+                //ahora la maquina hace su propia apuesta y al igual que en el turno anterior solo podrá elegir entre 1 y el máximo de canicas del jugador que menos tiene.
             apuestaMaquina = (int)(Math.random()*Math.min(canicasHumano,canicasMaquina)+1);
                 System.out.println();
 
@@ -136,7 +136,7 @@ public class PracticaEvaluable {
                     System.out.println("Jugador "+jugadorHumano+ " tiene "+canicasHumano+" canicas.");
                     System.out.println("Jugador "+jugadorMaquina+ " tiene "+canicasMaquina+" canicas.");
                 }
-                System.out.println("************************* FINAL TURNO JUGADOR "+jugadorHumano+ " **************************");
+                System.out.println("********************** FINAL TURNO JUGADOR "+jugadorHumano+ " ************************");
                 // Como el turno era en 1, ahora cambiamos el turno para que juegue el otro jugador.
                 turno = 0;
             }
